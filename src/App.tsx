@@ -1,5 +1,5 @@
 function App() {
-  return <div>FinAuto</div>
+  return <div>FinAuto</div>;
 }
 
-export default App
+export default App;

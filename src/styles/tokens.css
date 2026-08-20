@@ -1,32 +1,32 @@
 :root {
-    /* cor */
-    --bg: oklch(0.11 0.015 292);
-    --panel-top: oklch(0.19 0.02 300);
-    --panel-bottom: oklch(0.15 0.018 292);
-    --border: rgba(255, 255, 255, 0.10);
-    --text: oklch(0.97 0.005 290);
-    --text-dim: oklch(0.66 0.02 290);
-    --accent: oklch(0.72 0.24 300);
-    --accent-text: oklch(0.82 0.19 300);
-    --accent-glow: oklch(0.72 0.24 300 / 0.45);
-    --field-bg: oklch(0.22 0.02 292);
-    --principal-color: oklch(0.4 0.02 292);
-    --danger: oklch(0.72 0.19 25);
-    --on-accent: oklch(0.14 0.02 292);
-    --donut-center-bg: oklch(0.16 0.018 292);
+  /* cor */
+  --bg: oklch(0.11 0.015 292);
+  --panel-top: oklch(0.19 0.02 300);
+  --panel-bottom: oklch(0.15 0.018 292);
+  --border: rgba(255, 255, 255, 0.1);
+  --text: oklch(0.97 0.005 290);
+  --text-dim: oklch(0.66 0.02 290);
+  --accent: oklch(0.72 0.24 300);
+  --accent-text: oklch(0.82 0.19 300);
+  --accent-glow: oklch(0.72 0.24 300 / 0.45);
+  --field-bg: oklch(0.22 0.02 292);
+  --principal-color: oklch(0.4 0.02 292);
+  --danger: oklch(0.72 0.19 25);
+  --on-accent: oklch(0.14 0.02 292);
+  --donut-center-bg: oklch(0.16 0.018 292);
 
-    /* tipografia */
-    --font-sans: 'Inter', system-ui, sans-serif;
-    --font-mono: 'Roboto Mono', ui-monospace, monospace;
+  /* tipografia */
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'Roboto Mono', ui-monospace, monospace;
 
-    /* raio */
-    --radius-card: 20px;
-    --radius-input: 10px;
-    --radius-input-sm: 8px;
-    --radius-button: 12px;
-    --radius-logo: 7px;
-    --radius-toggle: 8px;
+  /* raio */
+  --radius-card: 20px;
+  --radius-input: 10px;
+  --radius-input-sm: 8px;
+  --radius-button: 12px;
+  --radius-logo: 7px;
+  --radius-toggle: 8px;
 
-    /* espaçamento */
-    --space-field-gap: 16px;
+  /* espaçamento */
+  --space-field-gap: 16px;
 }
