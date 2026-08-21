@@ -1,16 +1,36 @@
 import type { LoanResult } from './types';
 
+const MONTHS_PER_YEAR = 12;
+
 export function computeAmortization(
   principal: number,
   monthlyRatePct: number,
-  n: number,
+  installments: number,
 ): LoanResult {
-  const i = monthlyRatePct / 100;
+  const monthlyRate = monthlyRatePct / 100;
+
   const payment =
-    i === 0 ? principal / n : (principal * i) / (1 - Math.pow(1 + i, -n));
-  const totalPaid = payment * n;
+    monthlyRate === 0
+      ? principal / installments
+      : priceFormulaPayment(principal, monthlyRate, installments);
+
+  const totalPaid = payment * installments;
   const totalInterest = totalPaid - principal;
-  const effectiveAnnual = (Math.pow(1 + i, 12) - 1) * 100;
+  const effectiveAnnual = compoundedAnnualRate(monthlyRate);
 
   return { principal, payment, totalPaid, totalInterest, effectiveAnnual };
+}
+
+function priceFormulaPayment(
+  principal: number,
+  monthlyRate: number,
+  installments: number,
+): number {
+  return (
+    (principal * monthlyRate) / (1 - Math.pow(1 + monthlyRate, -installments))
+  );
+}
+
+function compoundedAnnualRate(monthlyRate: number): number {
+  return (Math.pow(1 + monthlyRate, MONTHS_PER_YEAR) - 1) * 100;
 }
