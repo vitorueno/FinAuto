@@ -1,16 +1,23 @@
 import type { Separators } from './types';
 
+// Strips leading zeros but keeps the last one: "007" -> "7", "000" -> "0"
+const LEADING_ZEROS_BUT_ONE = /^0+(?=\d)/;
+const NON_DIGIT = /\D/g;
+
+function stripLeadingZeros(digits: string): string {
+  return digits.replace(LEADING_ZEROS_BUT_ONE, '');
+}
+
 export function formatRateInput(raw: string, sep: Separators): string {
-  const digits = raw
-    .replace(/\D/g, '')
-    .replace(/^0+(?=\d)/, '')
-    .slice(0, 4);
+  const digits = stripLeadingZeros(raw.replace(NON_DIGIT, '')).slice(0, 4);
   if (digits === '') return '';
 
   const padded = digits.padStart(3, '0');
-  const intPart = padded.slice(0, -2).replace(/^0+(?=\d)/, '');
+  const intDigits = stripLeadingZeros(padded.slice(0, -2));
+  const intPart = intDigits === '' ? '0' : intDigits;
   const decPart = padded.slice(-2);
-  return (intPart === '' ? '0' : intPart) + sep.dec + decPart;
+
+  return intPart + sep.dec + decPart;
 }
 
 export function formatRateDisplay(num: number, sep: Separators): string {
