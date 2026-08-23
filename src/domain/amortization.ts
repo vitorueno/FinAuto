@@ -9,16 +9,22 @@ export function computeAmortization(
 ): LoanResult {
   const monthlyRate = monthlyRatePct / 100;
 
-  const payment =
+  const monthlyPayment =
     monthlyRate === 0
       ? principal / installments
       : priceFormulaPayment(principal, monthlyRate, installments);
 
-  const totalPaid = payment * installments;
+  const totalPaid = monthlyPayment * installments;
   const totalInterest = totalPaid - principal;
-  const effectiveAnnual = compoundedAnnualRate(monthlyRate);
+  const effectiveAnnualRatePercent = compoundedAnnualRatePercent(monthlyRate);
 
-  return { principal, payment, totalPaid, totalInterest, effectiveAnnual };
+  return {
+    principal,
+    monthlyPayment,
+    totalPaid,
+    totalInterest,
+    effectiveAnnualRatePercent,
+  };
 }
 
 function priceFormulaPayment(
@@ -31,6 +37,6 @@ function priceFormulaPayment(
   );
 }
 
-function compoundedAnnualRate(monthlyRate: number): number {
+function compoundedAnnualRatePercent(monthlyRate: number): number {
   return (Math.pow(1 + monthlyRate, MONTHS_PER_YEAR) - 1) * 100;
 }

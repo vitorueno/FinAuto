@@ -4,8 +4,8 @@ import { getSeparators } from './separators';
 
 const sep = getSeparators('BRL');
 const messages = {
-  required: 'Required',
-  downGteVehicle: 'Must be less than vehicle price',
+  invalidAmount: 'Required',
+  downPaymentExceedsVehiclePrice: 'Must be less than vehicle price',
   ratePositive: 'Must be greater than 0',
   installmentsRange: 'Enter 1–96 installments',
 };
@@ -28,7 +28,7 @@ describe('validateLoanForm', () => {
       sep,
       messages,
     );
-    expect(errors.vehiclePrice).toBe(messages.required);
+    expect(errors.vehiclePrice).toBe(messages.invalidAmount);
   });
 
   it('rejects a down payment greater than or equal to the vehicle price', () => {
@@ -37,7 +37,7 @@ describe('validateLoanForm', () => {
       sep,
       messages,
     );
-    expect(errors.downPayment).toBe(messages.downGteVehicle);
+    expect(errors.downPayment).toBe(messages.downPaymentExceedsVehiclePrice);
   });
 
   it('requires a positive rate', () => {

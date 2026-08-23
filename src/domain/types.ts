@@ -8,10 +8,10 @@ export interface Separators {
 
 export interface LoanResult {
   principal: number;
-  payment: number;
+  monthlyPayment: number;
   totalPaid: number;
   totalInterest: number;
-  effectiveAnnual: number;
+  effectiveAnnualRatePercent: number;
 }
 
 export type FieldErrors = Partial<{

@@ -8,7 +8,7 @@ function stripLeadingZeros(digits: string): string {
   return digits.replace(LEADING_ZEROS_BUT_ONE, '');
 }
 
-export function formatRateInput(raw: string, sep: Separators): string {
+export function maskRateInput(raw: string, sep: Separators): string {
   const digits = stripLeadingZeros(raw.replace(NON_DIGIT, '')).slice(0, 4);
   if (digits === '') return '';
 

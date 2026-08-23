@@ -20,8 +20,8 @@ export interface Copy {
   interest: string;
   empty: string;
   errors: {
-    required: string;
-    downGteVehicle: string;
+    invalidAmount: string;
+    downPaymentExceedsVehiclePrice: string;
     ratePositive: string;
     installmentsRange: string;
   };
@@ -48,8 +48,8 @@ export const COPY: Record<Lang, Copy> = {
     interest: 'Interest',
     empty: 'Fill in the form and press Calculate to see your results.',
     errors: {
-      required: 'Required',
-      downGteVehicle: 'Must be less than vehicle price',
+      invalidAmount: 'Required',
+      downPaymentExceedsVehiclePrice: 'Must be less than vehicle price',
       ratePositive: 'Must be greater than 0',
       installmentsRange: 'Enter 1–96 installments',
     },
@@ -74,8 +74,8 @@ export const COPY: Record<Lang, Copy> = {
     interest: 'Juros',
     empty: 'Preencha o formulário e clique em Calcular para ver o resultado.',
     errors: {
-      required: 'Obrigatório',
-      downGteVehicle: 'Deve ser menor que o valor do veículo',
+      invalidAmount: 'Obrigatório',
+      downPaymentExceedsVehiclePrice: 'Deve ser menor que o valor do veículo',
       ratePositive: 'Deve ser maior que 0',
       installmentsRange: 'Informe de 1 a 96 parcelas',
     },

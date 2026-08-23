@@ -6,7 +6,7 @@ const FLOAT_EPSILON = 1e-9;
 // Matches every thousands-digit boundary for separator insertion.
 const THOUSANDS_BOUNDARY = /\B(?=(\d{3})+(?!\d))/g;
 
-export function numberToDisplay(num: number, sep: Separators): string {
+export function formatNumber(num: number, sep: Separators): string {
   if (Number.isNaN(num)) return '';
 
   const hasDecimal = Math.abs(num % 1) > FLOAT_EPSILON;

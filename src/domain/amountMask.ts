@@ -1,12 +1,12 @@
 import type { Separators } from './types';
 
 function keepDigitsAndDecimalChar(raw: string, sep: Separators): string {
-  const otherDec = sep.dec === ',' ? '.' : ',';
+  const altDecimalChar = sep.dec === ',' ? '.' : ',';
   const kept = raw
     .split('')
-    .filter((c) => /[0-9]/.test(c) || c === sep.dec || c === otherDec)
+    .filter((c) => /[0-9]/.test(c) || c === sep.dec || c === altDecimalChar)
     .join('');
-  return kept.split(otherDec).join(sep.dec);
+  return kept.split(altDecimalChar).join(sep.dec);
 }
 
 function splitIntegerAndDecimal(
@@ -32,7 +32,7 @@ function insertThousandsSeparators(digits: string, sep: Separators): string {
   );
 }
 
-export function formatAmountInput(raw: string, sep: Separators): string {
+export function maskAmountInput(raw: string, sep: Separators): string {
   const cleaned = keepDigitsAndDecimalChar(raw, sep);
   if (cleaned === '') return '';
 
