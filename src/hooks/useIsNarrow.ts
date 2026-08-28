@@ -6,7 +6,7 @@ export function useIsNarrow(breakpoint: number): boolean {
   );
 
   useEffect(() => {
-    const mql = window.matchMedia(`(max-width): ${breakpoint - 1}px`);
+    const mql = window.matchMedia(`(max-width: ${breakpoint - 1}px)`);
     const handleChange = () => setIsNarrow(mql.matches);
     handleChange();
     mql.addEventListener('change', handleChange);
