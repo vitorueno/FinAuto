@@ -4,11 +4,12 @@ import { formatNumber } from './numberFormat';
 const brl = { dec: ',', thou: '.' } as const;
 
 describe('formatNumber', () => {
-  it('formats an integer without decimals', () => {
-    expect(formatNumber(45000, brl)).toBe('45.000');
+  it('always shows two decimal places', () => {
+    expect(formatNumber(45000, brl)).toBe('45.000,00');
   });
 
-  it('formats a number with a fractional part', () => {
+  it('separates thousands and rounds to the cent', () => {
     expect(formatNumber(45000.5, brl)).toBe('45.000,50');
+    expect(formatNumber(45000.567, brl)).toBe('45.000,57');
   });
 });

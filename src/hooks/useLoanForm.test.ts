@@ -13,14 +13,14 @@ function setup(currency: Currency = 'BRL') {
 describe('useLoanForm', () => {
   it('starts with the default preset values and no results', () => {
     const { result } = setup();
-    expect(result.current.vehiclePrice).toBe('45.000');
+    expect(result.current.vehiclePrice).toBe('45.000,00');
     expect(result.current.results).toBeNull();
   });
 
   it('masks amount input as the user types', () => {
     const { result } = setup();
-    act(() => result.current.handleVehiclePriceChange('60000'));
-    expect(result.current.vehiclePrice).toBe('60.000');
+    act(() => result.current.handleVehiclePriceChange('6000000'));
+    expect(result.current.vehiclePrice).toBe('60.000,00');
   });
 
   it('blocks submit and reports errors when the form is invalid', () => {
@@ -41,12 +41,12 @@ describe('useLoanForm', () => {
 
   it('reformats typed amounts when the currency changes, without clearing them', () => {
     const { result, rerender } = setup('BRL');
-    act(() => result.current.handleVehiclePriceChange('60000'));
-    expect(result.current.vehiclePrice).toBe('60.000');
+    act(() => result.current.handleVehiclePriceChange('6000000'));
+    expect(result.current.vehiclePrice).toBe('60.000,00');
 
     act(() => result.current.reformatForCurrency('USD'));
     rerender({ currency: 'USD' });
 
-    expect(result.current.vehiclePrice).toBe('60,000');
+    expect(result.current.vehiclePrice).toBe('60,000.00');
   });
 });

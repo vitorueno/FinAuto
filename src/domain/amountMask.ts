@@ -1,43 +1,17 @@
 import type { Separators } from './types';
 
-function keepDigitsAndDecimalChar(raw: string, sep: Separators): string {
-  const altDecimalChar = sep.dec === ',' ? '.' : ',';
-  const kept = raw
-    .split('')
-    .filter((c) => /[0-9]/.test(c) || c === sep.dec || c === altDecimalChar)
-    .join('');
-  return kept.split(altDecimalChar).join(sep.dec);
-}
-
-function splitIntegerAndDecimal(
-  cleaned: string,
-  sep: Separators,
-): { intPart: string; decPart: string | null } {
-  const decIdx = cleaned.indexOf(sep.dec);
-  if (decIdx === -1) return { intPart: cleaned, decPart: null };
-
-  const intPart = cleaned.slice(0, decIdx);
-  const decPart = cleaned
-    .slice(decIdx + 1)
-    .split(sep.dec)
-    .join('')
-    .slice(0, 2);
-  return { intPart, decPart };
-}
-
-function insertThousandsSeparators(digits: string, sep: Separators): string {
-  const locale = sep.thou === '.' ? 'pt-BR' : 'en-US';
-  return new Intl.NumberFormat(locale, { maximumFractionDigits: 0 }).format(
-    Number(digits),
-  );
-}
+const NON_DIGIT = /\D/g;
+// The field fills from the right, so the last two digits typed are the cents.
+const CENTS_PER_UNIT = 100;
 
 export function maskAmountInput(raw: string, sep: Separators): string {
-  const cleaned = keepDigitsAndDecimalChar(raw, sep);
-  if (cleaned === '') return '';
+  const digits = raw.replace(NON_DIGIT, '');
+  if (digits === '') return '';
 
-  const { intPart, decPart } = splitIntegerAndDecimal(cleaned, sep);
-  const withThousands = insertThousandsSeparators(intPart, sep);
+  const locale = sep.thou === '.' ? 'pt-BR' : 'en-US';
 
-  return decPart !== null ? withThousands + sep.dec + decPart : withThousands;
+  return new Intl.NumberFormat(locale, {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(Number(digits) / CENTS_PER_UNIT);
 }

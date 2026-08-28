@@ -6,12 +6,12 @@ import { COPY } from '../../i18n/copy';
 
 const baseProps = {
   t: COPY.en,
-  vehiclePrice: '45.000',
-  downPayment: '10.000',
+  vehiclePrice: '45.000,00',
+  downPayment: '10.000,00',
   rate: '1,50',
   installments: 48,
   errors: {},
-  placeholders: { vehicle: '45.000', down: '10.000', rate: '1,50' },
+  placeholders: { vehicle: '45.000,00', down: '10.000,00', rate: '1,50' },
   onVehiclePriceChange: vi.fn(),
   onDownPaymentChange: vi.fn(),
   onRateChange: vi.fn(),
