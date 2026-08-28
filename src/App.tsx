@@ -15,7 +15,7 @@ const NARROW_BREAKPOINT = 760;
 
 function App() {
   const [lang, setLang] = useState<Lang>('en');
-  const [currency, setCurrency] = useState<Currency>('BRL');
+  const [currency, setCurrency] = useState<Currency>('USD');
   const isNarrow = useIsNarrow(NARROW_BREAKPOINT);
 
   const t = COPY[lang];

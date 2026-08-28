@@ -11,9 +11,10 @@ function setup(currency: Currency = 'BRL') {
 }
 
 describe('useLoanForm', () => {
-  it('starts with the default preset values and no results', () => {
+  it('starts with empty amount fields and no results', () => {
     const { result } = setup();
-    expect(result.current.vehiclePrice).toBe('45.000,00');
+    expect(result.current.vehiclePrice).toBe('');
+    expect(result.current.downPayment).toBe('');
     expect(result.current.results).toBeNull();
   });
 
@@ -33,6 +34,8 @@ describe('useLoanForm', () => {
 
   it('computes and stores results for a valid submission', () => {
     const { result } = setup();
+    act(() => result.current.handleVehiclePriceChange('4500000'));
+    act(() => result.current.handleDownPaymentChange('1000000'));
     act(() => result.current.handleRateChange('150'));
     act(() => result.current.submit());
     expect(result.current.results).not.toBeNull();

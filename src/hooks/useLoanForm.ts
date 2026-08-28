@@ -24,8 +24,8 @@ interface UseLoanFormArgs {
 }
 
 export function useLoanForm({ currency, t }: UseLoanFormArgs) {
-  const [vehiclePrice, setVehiclePrice] = useState('45.000,00');
-  const [downPayment, setDownPayment] = useState('10.000,00');
+  const [vehiclePrice, setVehiclePrice] = useState('');
+  const [downPayment, setDownPayment] = useState('');
   const [rate, setRate] = useState('');
   const [installments, setInstallments] = useState(48);
   const [errors, setErrors] = useState<FieldErrors>({});

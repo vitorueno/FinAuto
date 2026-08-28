@@ -29,6 +29,8 @@ describe('App', () => {
     const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime });
     render(<App />);
 
+    await user.type(screen.getByLabelText(COPY.en.vehiclePrice), '4500000');
+    await user.type(screen.getByLabelText(COPY.en.downPayment), '1000000');
     await user.type(screen.getByLabelText(COPY.en.rate), '150');
     await user.click(screen.getByRole('button', { name: COPY.en.calculate }));
 
@@ -36,7 +38,7 @@ describe('App', () => {
       vi.advanceTimersByTime(1000);
     });
 
-    expect(screen.getByText('R$ 35.000,00')).toBeInTheDocument();
+    expect(screen.getByText('$ 35,000.00')).toBeInTheDocument();
     expect(screen.getByText('19.56%')).toBeInTheDocument();
 
     vi.useRealTimers();
