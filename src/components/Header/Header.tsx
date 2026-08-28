@@ -43,8 +43,8 @@ export function Header({
           value={currency}
           onChange={onCurrencyChange}
           options={[
-            { value: 'BRL', label: 'R$' },
             { value: 'USD', label: '$' },
+            { value: 'BRL', label: 'R$' },
           ]}
         />
       </div>
